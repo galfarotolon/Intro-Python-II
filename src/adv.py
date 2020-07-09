@@ -1,11 +1,12 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons."),
+                     "North of you, the cave mount beckons.", ['Sword', 'Shield']),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -64,6 +65,15 @@ possible_directions = ["n", "s", "e", "w"]
 print(player)
 
 
+item = {
+    'Sword': Item('Greatsword', 'It is heavy when you lift it.'),
+    "Shield": Item("Great shield", "it is heavy when you lift it."),
+   
+}
+
+
+
+
 # Write a loop that:
 
 while True:
@@ -86,10 +96,36 @@ while True:
         # check to see if we can go in that direction 
         # if we can, go there 
         try_direction(player, player_input)
-        print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
+        print(f"""\nYou enter the {player.current_room.name}, {player.current_room.description} 
+        There are several items in the room: {player.current_room.print_items()}""")
+
+
+  
+        # print("Here are the items available in this room: ")
+        # items = room.items
+        # room.print_items()
+        # print()
+
+        # item_selection = input("Select an item to pick up: ")
+
+        #     # add the chosen product to the user's cart
+
+        # chosen_item = items[int(item_selection)-1]
+        # player.add_item(chosen_item)
+
+
+
 
     else:
         print("\nThat is not a valid command. Please enter 'n', 'e', 's' or 'w' to keep playing, or 'q' to quit your adventure.")
+
+
+
+
+
+
+   
+   
 
 
 
