@@ -49,8 +49,9 @@ def try_direction(player, player_input):
 
        player.current_room =  getattr(player.current_room, attribute)
 
+# Print an error message if the movement isn't allowed.
     else:
-        print("There is nothing in that direction!")
+        print("\nThere is nothing in that direction! Try again!")
 
 
 player_name = input(f"\nHello adventurer! Please enter  your name to continue: ")
@@ -63,14 +64,6 @@ print(player)
 
 
 # Write a loop that:
-
-# * Prints the current description (the textwrap module might be useful here).
-
-
-
-# Print an error message if the movement isn't allowed.
-#
-
 
 while True:
  
@@ -87,15 +80,13 @@ while True:
     
     # If the user enters a cardinal direction, attempt to move to the room there.
 
-
-    
-
     if player_input[0] == 'n':
 
         try_direction(player, player_input)
 
 
            # * Prints the current room name
+           # * Prints the current description (the textwrap module might be useful here).
         print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
 
     elif player_input[0] == 's':
