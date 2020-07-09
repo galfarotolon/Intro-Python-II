@@ -38,13 +38,28 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-player_name = input(f"Hello adventurer! Please enter  your name to continue: ")
+def try_direction(player, player_input):
+ #check player current location
+
+    attribute  = player_input + '_to'
+
+    #python hasattr checks if class has attribute
+
+    if hasattr(player.current_room, attribute):
+
+       player.current_room =  getattr(player.current_room, attribute)
+
+    else:
+        print("There is nothing in that direction!")
+
+
+player_name = input(f"\nHello adventurer! Please enter  your name to continue: ")
 
 # Make a new player object that is currently in the 'outside' room.
 
-new_player = Player(player_name, current_room=room['outside'])
+player = Player(player_name, room['outside'])
 
-print(new_player)
+print(player)
 
 
 # Write a loop that:
@@ -62,23 +77,42 @@ while True:
  
     # * Waits for user input and decides what to do.
 
-    direction = input("Which direction do you want to go next? Please enter 'n', 'e', 's' or 'w':  ")
-
+    player_input = input("\nWhich direction do you want to go next? Please enter 'n', 'e', 's' or 'w':  ").strip().lower().split()
+    player_input = player_input[0]
+    
 # If the user enters "q", quit the game.
 
-    if direction == 'q':
+    if player_input[0] == 'q':
         break
     
     # If the user enters a cardinal direction, attempt to move to the room there.
-    elif direction == 'n':
-        new_player.current_room = room['outside'].n_to
+
+
+    
+
+    if player_input[0] == 'n':
+
+        try_direction(player, player_input)
+
 
            # * Prints the current room name
-        print(f"You enter the {new_player.current_room.name}, {new_player.current_room.description}")
+        print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
 
+    elif player_input[0] == 's':
+        try_direction(player, player_input)
 
+        print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
+    elif player_input[0] == 'e':
+        try_direction(player, player_input)
+
+        print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
+    elif player_input[0] == 'w':
+        try_direction(player, player_input)
+
+        print(f"\nYou enter the {player.current_room.name}, {player.current_room.description}")
+    
     else:
-        print("That is not a valid command. Please enter 'n', 'e', 's' or 'w' to keep playing, or 'q' to quit your adventure.")
+        print("\nThat is not a valid command. Please enter 'n', 'e', 's' or 'w' to keep playing, or 'q' to quit your adventure.")
 
     
 
