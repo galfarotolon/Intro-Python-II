@@ -20,3 +20,5 @@ class Room:
 
     def remove_item(self, item):
         self.remove(item)
+
+  
